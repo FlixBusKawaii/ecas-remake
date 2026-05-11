@@ -10,3 +10,9 @@ export interface Reading {
   value: number;
   date: string;
 }
+
+export interface EnrichedReading extends Reading {
+  consumption?: number;
+  days?: number;
+  perDay?: number;
+}
