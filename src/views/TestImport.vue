@@ -1,13 +1,30 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { importData } from '../services/import';
 import { db } from '../services/db';
-import type { Meter, Reading } from '../types';
+import type { EnrichedReading, Meter } from '../types';
+import { enrichReadings } from '../services/stats';
+import ReadingList from '../components/ReadingList.vue';
 
 const meters = ref<Meter[]>([]);
-const readings = ref<Reading[]>([]);
+const readings = ref<EnrichedReading[]>([]);
 
-const limit = ref(10);
+const selectedMeterId = ref(1);
+
+async function loadReadings() {
+
+  const rawReadings = await db.readings
+    .where('meterId')
+    .equals(selectedMeterId.value)
+    .toArray();
+
+  readings.value =
+    enrichReadings(rawReadings).reverse();
+}
+
+watch(selectedMeterId, async () => {
+  await loadReadings();
+});
 
 onMounted(async () => {
   const count = await db.meters.count();
@@ -17,7 +34,8 @@ onMounted(async () => {
   }
 
   meters.value = await db.meters.toArray();
-  readings.value = await db.readings.toArray();
+
+  await loadReadings();
 });
 </script>
 
@@ -33,11 +51,18 @@ onMounted(async () => {
     </ul>
 
     <h2>Relevés</h2>
-    <ul>
-      <li v-for="r in readings.slice(0, limit)" :key="r.id">
-        {{ r.value }} — {{ r.date }}
-      </li>
-    </ul>
-    <button @click="limit += 20">Load more</button>
+    <select v-model="selectedMeterId">
+
+      <option :value="1">
+        HC
+      </option>
+
+      <option :value="2">
+        HP
+      </option>
+
+    </select>
+
+    <ReadingList :readings="readings" />
   </div>
 </template>
