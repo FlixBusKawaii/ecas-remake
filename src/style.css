@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-white;
+  }
+
+  h1 {
+    @apply text-2xl font-bold;
+  }
+
+  h2 {
+    @apply text-lg font-semibold;
+  }
+
+  main {
+    @apply p-4;
+  }
+
+  button {
+    @apply rounded bg-blue-600 px-4 py-2 font-medium text-white;
+  }
+
+  table {
+    @apply w-full text-sm;
+  }
+
+  th {
+    @apply border-b border-slate-700 py-2 text-left font-semibold;
+  }
+
+  td {
+    @apply py-2;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  .router-link-active {
+    @apply text-blue-400;
+  }
+}
