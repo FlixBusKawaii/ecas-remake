@@ -2,12 +2,14 @@
 import { onMounted, ref, watch } from 'vue';
 import { importData } from '../services/import';
 import { db } from '../services/db';
-import type { EnrichedReading, Meter } from '../types';
+import type { EnrichedReading, Meter, MonthlyStat } from '../types';
 import { enrichReadings } from '../services/stats';
 import ReadingList from '../components/ReadingList.vue';
+import { computeYearStats } from '../services/monthlyStats';
 
 const meters = ref<Meter[]>([]);
 const readings = ref<EnrichedReading[]>([]);
+const stats = ref<MonthlyStat[]>([]);
 
 const selectedMeterId = ref(1);
 
@@ -18,8 +20,9 @@ async function loadReadings() {
     .equals(selectedMeterId.value)
     .toArray();
 
-  readings.value =
-    enrichReadings(rawReadings).reverse();
+  readings.value = enrichReadings(rawReadings).reverse();
+  
+  stats.value = computeYearStats(rawReadings, 2025);
 }
 
 watch(selectedMeterId, async () => {
@@ -65,4 +68,48 @@ onMounted(async () => {
 
     <ReadingList :readings="readings" />
   </div>
+
+  <h2>Stats</h2>
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Mois</th>
+        <th>Consommation</th>
+        <th>Dernière année</th>
+        <th>Différence</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr v-for="stat in stats" :key="stat.month">
+        <td>{{ stat.month }}</td>
+
+        <td>
+          {{ stat.consumption !== null
+            ? `${stat.consumption} kWh`
+            : '-' }}
+        </td>
+
+        <td>
+          {{ stat.previousYear !== null
+            ? `${stat.previousYear} kWh`
+            : '-' }}
+        </td>
+
+        <td>
+          <template v-if="stat.difference !== null">
+            {{ stat.difference > 0 ? '+' : '' }}{{ stat.difference }} kWh
+            (
+            {{ stat.percentage! > 0 ? '+' : '' }}{{ stat.percentage }}%
+            )
+          </template>
+
+          <template v-else>
+            -
+          </template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    
 </template>
