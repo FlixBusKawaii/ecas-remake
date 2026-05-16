@@ -3,42 +3,67 @@ import type { EnrichedReading } from '../types';
 
 defineProps<{
   readings: EnrichedReading[];
+  selectedAverageConsumption: number;
 }>();
+
+function formatDate(date: string): string {
+  return new Date(date).toLocaleString('fr-FR', {
+    dateStyle: 'short',
+    timeStyle: 'short',
+  });
+}
 </script>
 
 <template>
-  <ul>
-
+  <ul class="space-y-3 overflow-auto">
     <li
       v-for="r in readings"
       :key="r.id"
+      class="rounded-2xl border border-slate-800 bg-slate-900 p-4"
     >
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="text-xs text-slate-400">
+            {{ formatDate(r.date) }}
+          </p>
 
-      <strong>
-        {{ r.value }} kWh
-      </strong>
-
-      <div>
-        {{ r.date }}
+          <p class="mt-1 text-lg font-semibold">
+            {{ r.value }} kWh
+          </p>
+        </div>
       </div>
 
-      <template
-        v-if="r.consumption !== undefined"
-      >
+      <template v-if="r.consumption !== undefined">
+        <div class="mt-1 grid grid-cols-3 gap-3 text-center">
+          <div class="rounded-lg bg-slate-800 p-2">
+            <p class="text-xs text-slate-400">Consumption</p>
+            <p class="mt-1 font-medium">
+              {{ r.consumption.toFixed(1) }} kWh
+            </p>
+          </div>
 
-        <div>
-          Consumption:
-          {{ r.consumption }} kWh
+          <div class="rounded-lg bg-slate-800 p-2">
+            <p class="text-xs text-slate-400">Days</p>
+            <p class="mt-1 font-medium">
+              {{ r.days?.toFixed(1) }}
+            </p>
+          </div>
+
+          <div class="rounded-lg bg-slate-800 p-2" v-if="selectedAverageConsumption == 1">
+            <p class="text-xs text-slate-400">Per day</p>
+            <p class="mt-1 font-medium">
+              {{ r.perDay?.toFixed(1) }} kWh
+            </p>
+          </div>
+
+          <div class="rounded-lg bg-slate-800 p-2" v-if="selectedAverageConsumption == 2">
+            <p class="text-xs text-slate-400">Per month</p>
+            <p class="mt-1 font-medium">
+              {{ r.perMonth?.toFixed(1) }} kWh
+            </p>
+          </div>
         </div>
-
-        <div>
-          Days:
-          {{ r.days?.toFixed(2) }}
-        </div>
-
       </template>
-
     </li>
-
   </ul>
 </template>

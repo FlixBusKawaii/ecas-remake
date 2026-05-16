@@ -32,7 +32,8 @@ export function computeConsumption(
   return {
     consumption,
     days,
-    perDay: consumption / days
+    perDay: consumption / days,
+    perMonth: (consumption / days)* 30.4375
   };
 }
 
