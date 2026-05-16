@@ -15,6 +15,7 @@ export interface EnrichedReading extends Reading {
   consumption?: number;
   days?: number;
   perDay?: number;
+  perMonth?: number;
 }
 
 export interface MonthlyStat {
