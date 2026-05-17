@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import MeterSummaryCard from '../components/MeterSummaryCard.vue';
 import { getMeterSummaries, type MeterSummary } from '../services/home';
 import AddReadingModal from '../components/AddReadingModal.vue';
+import { exportData } from '../services/export';
 
 const summaries = ref<MeterSummary[]>([]);
 
@@ -26,6 +27,10 @@ async function handleSaved() {
   latestReadingId.value = getLatestReadingId();
 }
 
+async function handleExport() {
+  await exportData();
+}
+
 onMounted(async () => {
   summaries.value = await getMeterSummaries();
   latestReadingId.value = getLatestReadingId();
@@ -47,7 +52,7 @@ onMounted(async () => {
         Add Reading
       </button>
 
-      <button disabled>
+      <button @click="handleExport">
         Export Data
       </button>
     </div>
