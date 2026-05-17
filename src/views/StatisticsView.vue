@@ -52,7 +52,7 @@ onMounted(async () => {
           <option :value="2">HP</option>
         </select>
       </div>
-      <div class="mt-4 min-h-0 max-h-[60vh] flex-1 overflow-y-auto">
+      <div class="mt-4 min-h-0 max-h-[65vh] flex-1 overflow-y-auto">
         <StatisticsTable :stats="stats" />
       </div>
     </div>
