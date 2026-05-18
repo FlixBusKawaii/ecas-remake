@@ -4,7 +4,7 @@ import ReadingList from '../components/ReadingList.vue';
 import type { EnrichedReading, Meter } from '../types';
 import { enrichReadings } from '../services/stats';
 import { db } from '../services/db';
-import { importData } from '../services/import';
+import { getData } from '../services/import';
 
 const meters = ref<Meter[]>([]);
 const readings = ref<EnrichedReading[]>([]);
@@ -30,7 +30,7 @@ onMounted(async () => {
   const count = await db.meters.count();
 
   if (count === 0) {
-    await importData();
+    await getData();
   }
 
   meters.value = await db.meters.toArray();
