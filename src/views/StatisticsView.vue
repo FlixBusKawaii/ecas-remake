@@ -4,7 +4,7 @@ import type { Meter, MonthlyStat } from '../types';
 import StatisticsTable from '../components/StatisticsTable.vue';
 import { db } from '../services/db';
 import { computeYearStats } from '../services/monthlyStats';
-import { importData } from '../services/import';
+import { getData } from '../services/import';
 
 const stats = ref<MonthlyStat[]>([]);
 const meters = ref<Meter[]>([]);
@@ -29,7 +29,7 @@ onMounted(async () => {
   const count = await db.meters.count();
 
   if (count === 0) {
-    await importData();
+    await getData();
   }
 
   meters.value = await db.meters.toArray();
