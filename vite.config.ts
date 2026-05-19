@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: '/ecas-remake',
+  base: '/ecas-remake/',
   plugins: [
     vue(),
     tailwindcss(),
@@ -16,7 +16,7 @@ export default defineConfig({
         theme_color: '#020617',
         background_color: '#020617',
         display: 'standalone',
-        start_url: '/',
+        start_url: '/ecas-remake/',
         icons: [
           {
             src: 'icon-192.png',
