@@ -3,9 +3,11 @@
   "nav.home": "Home",
   "nav.readings": "Readings",
   "nav.statistics": "Statistics",
+  "nav.settings": "Settings",
   "actions.addReading": "Add Reading",
   "actions.exportData": "Export Data",
   "actions.importData": "Import Data",
+  "actions.changeLanguage": "Change language",
   "common.save": "Save",
   "common.cancel": "Cancel",
   "meters.hc": "OTP",
@@ -17,6 +19,7 @@
   "wording.consumption": "Consumption",
   "wording.prev": "Prev.",
   "wording.enterValue": "Enter meter value",
+  "wording.developped": "Developped by FlixBusKawaii",
   "options.meterType": "Meter Type",
   "options.value": "Value (kWh)"
 }
