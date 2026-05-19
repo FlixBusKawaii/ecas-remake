@@ -19,7 +19,8 @@ export interface EnrichedReading extends Reading {
 }
 
 export interface MonthlyStat {
-  month: string;
+  month: number;
+  year: number;
   consumption: number | null;
   previousYear: number | null;
   difference: number | null;

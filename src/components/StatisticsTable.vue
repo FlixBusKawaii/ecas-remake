@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import type { MonthlyStat } from '../types';
+import { i18n } from '../i18n';
+import { formatMonth } from '../utils/date';
 
 defineProps<{
   stats: MonthlyStat[];
 }>();
+
+function getMonthName(month: number): string {
+  return formatMonth(month, i18n.global.locale.value);
+}
 </script>
 
 <template>
@@ -12,7 +18,7 @@ defineProps<{
       <thead class="border-b border-slate-800 bg-slate-800/50">
         <tr>
           <th class="px-2 py-1.5 text-left font-semibold text-slate-300">
-            Month
+            {{$t('wording.month')}}
           </th>
 
           <th class="px-2 py-1.5 text-left font-semibold text-slate-300">
@@ -20,7 +26,7 @@ defineProps<{
           </th>
 
           <th class="px-2 py-1.5 text-left font-semibold text-slate-300">
-            Prev.
+            {{$t('wording.prev')}}
           </th>
 
           <th class="px-2 py-1.5 text-left font-semibold text-slate-300">
@@ -36,7 +42,7 @@ defineProps<{
           class="border-b border-slate-800 last:border-b-0"
         >
           <td class="px-2 py-1.5">
-            {{ stat.month }}
+            {{ getMonthName(stat.month) }} {{ stat.year }}
           </td>
 
           <td class="px-2 py-1.5 tabular-nums">

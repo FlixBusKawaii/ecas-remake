@@ -13,7 +13,7 @@ import StatsIcon from './icons/StatsIcon.vue';
           class="flex flex-col items-center gap-1 px-2 py-3 text-xs border-r border-r-white"
         >
           <HomeIcon class="h-6 w-6 text-white" />
-          <span>Home</span>
+          <span>{{$t('nav.home')}}</span>
         </RouterLink>
       </li>
 
@@ -23,7 +23,7 @@ import StatsIcon from './icons/StatsIcon.vue';
           class="flex flex-col items-center gap-1 px-2 py-3 text-xs border-r border-r-white"
         >
           <ReadingsIcon class="h-6 w-6" />
-          <span>Readings</span>
+          <span>{{$t('nav.readings')}}</span>
         </RouterLink>
       </li>
 

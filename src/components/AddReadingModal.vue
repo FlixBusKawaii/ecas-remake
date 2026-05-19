@@ -49,7 +49,7 @@ function close() {
         class="w-full max-w-md rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl"
       >
         <div class="mb-4 flex items-center justify-between">
-          <h2 class="text-lg font-semibold">Add Reading</h2>
+          <h2 class="text-lg font-semibold">{{$t('actions.addReading')}}</h2>
         </div>
 
         <div class="space-y-4">
@@ -58,7 +58,7 @@ function close() {
                 for="meter"
                 class="mb-1 block text-sm font-medium text-slate-300"
               >
-              Meter Type
+              {{$t('options.meterType')}}
               </label>
 
               <select
@@ -66,8 +66,8 @@ function close() {
                 v-model="selectedMeterId"
                 class="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-white"
               >
-              <option :value="1">HC</option>
-              <option :value="2">HP</option>
+              <option :value="1">{{$t('meters.hc')}}</option>
+              <option :value="2">{{$t('meters.hp')}}</option>
               </select>
           </div>
 
@@ -76,7 +76,7 @@ function close() {
                 for="value"
                 class="mb-1 block text-sm font-medium text-slate-300"
               >
-              Value (kWh)
+              {{$t('options.value')}}
               </label>
 
               <input
@@ -85,7 +85,7 @@ function close() {
                 type="number"
                 min="0"
                 step="1"
-                placeholder="Enter meter value"
+                :placeholder="$t('wording.enterValue')"
                 class="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-white placeholder-slate-500"
               />
           </div>
@@ -96,7 +96,7 @@ function close() {
             class="flex-1 bg-slate-600 rounded-lg border border-slate-700 px-4 py-2"
             @click="close"
           >
-            Cancel
+            {{$t('common.cancel')}}
           </button>
 
           <button
@@ -104,7 +104,7 @@ function close() {
             :disabled="value === null || value <= 0"
             @click="save"
           >
-            Save
+            {{$t('common.save')}}
           </button>
         </div>
       </div>

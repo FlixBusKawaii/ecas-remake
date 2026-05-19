@@ -36,28 +36,28 @@ function formatDate(date: string): string {
       <template v-if="r.consumption !== undefined">
         <div class="mt-1 grid grid-cols-3 gap-3 text-center">
           <div class="rounded-lg bg-slate-800 p-2">
-            <p class="text-xs text-slate-400">Consumption</p>
+            <p class="text-xs text-slate-400">{{$t('wording.consumption')}}</p>
             <p class="mt-1 font-medium">
               {{ r.consumption.toFixed(1) }} kWh
             </p>
           </div>
 
           <div class="rounded-lg bg-slate-800 p-2">
-            <p class="text-xs text-slate-400">Days</p>
+            <p class="text-xs text-slate-400">{{$t('wording.days')}}</p>
             <p class="mt-1 font-medium">
               {{ r.days?.toFixed(1) }}
             </p>
           </div>
 
           <div class="rounded-lg bg-slate-800 p-2" v-if="selectedAverageConsumption == 1">
-            <p class="text-xs text-slate-400">Per day</p>
+            <p class="text-xs text-slate-400">{{$t('period.day')}}</p>
             <p class="mt-1 font-medium">
               {{ r.perDay?.toFixed(1) }} kWh
             </p>
           </div>
 
           <div class="rounded-lg bg-slate-800 p-2" v-if="selectedAverageConsumption == 2">
-            <p class="text-xs text-slate-400">Per month</p>
+            <p class="text-xs text-slate-400">{{$t('period.month')}}</p>
             <p class="mt-1 font-medium">
               {{ r.perMonth?.toFixed(1) }} kWh
             </p>

@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import MeterSummaryCard from '../components/MeterSummaryCard.vue';
 import { getMeterSummaries, type MeterSummary } from '../services/home';
 import AddReadingModal from '../components/AddReadingModal.vue';
 import { exportData } from '../services/export';
 import { importData } from '../services/import';
+import { i18n, setLocale } from '../i18n';
 
 const summaries = ref<MeterSummary[]>([]);
 
@@ -21,6 +22,11 @@ function getLatestReadingId(): number {
   if(latestHCid > latestHPid) return latestHCid;;
   return latestHPid;
 }
+
+const locale = computed({
+  get: () => i18n.global.locale.value,
+  set: (value: 'fr' | 'en') => setLocale(value)
+})
 
 async function handleSaved() {
   showModal.value = false;
@@ -57,7 +63,7 @@ onMounted(async () => {
 
 <template>
   <div class="space-y-4">
-    <h1>Home</h1>
+    <h1>{{ $t('nav.home') }}</h1>
 
     <MeterSummaryCard
       v-for="summary in summaries"
@@ -67,18 +73,18 @@ onMounted(async () => {
 
     <div class="grid grid-cols-2 gap-3">
       <button @click="showModal = true">
-        Add Reading
+        {{$t('actions.addReading')}}
       </button>
 
       <button @click="handleExport">
-        Export Data
+        {{$t('actions.exportData')}}
       </button>
     </div>
 
     <label
       for="import"
       class="mb-1 block text-sm font-medium text-slate-300"
-    >Import data
+    >{{$t('actions.importData')}}
     </label>
     <input
       id="import"
@@ -87,6 +93,14 @@ onMounted(async () => {
       @change="handleFileChange"
       class="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-white placeholder-slate-500"
     />
+
+    <select
+      v-model="locale"
+      class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white"
+    >
+      <option value="fr">🇫🇷 Français</option>
+      <option value="en">🇬🇧 English</option>
+    </select>
 
     <AddReadingModal
       v-model="showModal"

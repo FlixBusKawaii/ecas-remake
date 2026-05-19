@@ -42,23 +42,23 @@ onMounted(async () => {
 <template>
   <div class="flex h-full flex-col">
     <div class="space-y-4">
-      <h1>Readings</h1>
+      <h1>{{$t('nav.readings')}}</h1>
 
       <div class="flex flex-row space-x-2">
         <select
           v-model="selectedMeterId"
           class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-white"
         >
-          <option :value="1">HC</option>
-          <option :value="2">HP</option>
+          <option :value="1">{{$t('meters.hc')}}</option>
+          <option :value="2">{{$t('meters.hp')}}</option>
         </select>
 
         <select
           v-model="selectedAverageConsumption"
           class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-white"
         >
-          <option :value="1">Per Day</option>
-          <option :value="2">Per Month</option>
+          <option :value="1">{{$t('period.day')}}</option>
+          <option :value="2">{{$t('period.month')}}</option>
         </select>
       </div>
     </div>

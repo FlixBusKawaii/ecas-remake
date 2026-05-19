@@ -10,7 +10,7 @@ import AppIcon from './components/icons/AppIcon.vue';
       <header class="border-b border-slate-800 px-4 py-3">
         <div class="flex items-center gap-3 ">
           <app-icon class="h-8 w-8 shrink-0"/>
-          <h1 class="tracking-wide">ECAS</h1>
+          <h1 class="tracking-wide">{{$t('app.title')}}</h1>
         </div>
       </header>
 
