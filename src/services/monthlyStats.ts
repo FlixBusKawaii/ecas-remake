@@ -2,11 +2,6 @@ import type { Reading } from '../types';
 import type { MonthlyStat } from '../types';
 import { round1 } from './format';
 
-const MONTH_NAMES = [
-  'jan.', 'feb.', 'mar.', 'apr.', 'may', 'jun.',
-  'jul.', 'aug.', 'sep.', 'oct.', 'nov.', 'dec.'
-];
-
 export function estimateValueAt(
   readings: Reading[],
   targetDate: Date
@@ -74,7 +69,8 @@ export function computeYearStats(
     }
 
     stats.push({
-      month: `${MONTH_NAMES[month]} ${year}`,
+      month: month + 1,
+      year,
       consumption: round1(current),
       previousYear: round1(previous),
       difference: round1(difference),

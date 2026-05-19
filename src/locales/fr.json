@@ -1,0 +1,22 @@
+{
+  "app.title": "ECAS",
+  "nav.home": "Accueil",
+  "nav.readings": "Relevés",
+  "nav.statistics": "Statistiques",
+  "actions.addReading": "Ajouter un relevé",
+  "actions.exportData": "Exporter les données",
+  "actions.importData": "Importer les données",
+  "common.save": "Enregistrer",
+  "common.cancel": "Annuler",
+  "meters.hc": "HC",
+  "meters.hp": "HP",
+  "period.day": "Par Jour",
+  "period.month": "Par Mois",
+  "wording.days": "Jours",
+  "wording.month": "Mois",
+  "wording.consumption": "Consommation",
+  "wording.prev": "Prec.",
+  "wording.enterValue": "Entrer une valeur de relevé",
+  "options.meterType": "Type de relevé",
+  "options.value": "Valeur (kWh)"
+}

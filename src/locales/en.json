@@ -1,0 +1,22 @@
+{
+  "app.title": "ECAS",
+  "nav.home": "Home",
+  "nav.readings": "Readings",
+  "nav.statistics": "Statistics",
+  "actions.addReading": "Add Reading",
+  "actions.exportData": "Export Data",
+  "actions.importData": "Import Data",
+  "common.save": "Save",
+  "common.cancel": "Cancel",
+  "meters.hc": "OTP",
+  "meters.hp": "TP",
+  "period.day": "Per Day",
+  "period.month": "Per Month",
+  "wording.days": "Days",
+  "wording.month": "Month",
+  "wording.consumption": "Consumption",
+  "wording.prev": "Prev.",
+  "wording.enterValue": "Enter meter value",
+  "options.meterType": "Meter Type",
+  "options.value": "Value (kWh)"
+}

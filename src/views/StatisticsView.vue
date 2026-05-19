@@ -41,15 +41,15 @@ onMounted(async () => {
 <template>
   <div class="flex h-full flex-col">
     <div class="space-y-4">
-      <h1>Statistics</h1>
+      <h1>{{$t('nav.statistics')}}</h1>
 
       <div class="space-x-2">
         <select
           v-model="selectedMeterId"
           class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-white"
         >
-          <option :value="1">HC</option>
-          <option :value="2">HP</option>
+          <option :value="1">{{$t('meters.hc')}}</option>
+          <option :value="2">{{$t('meters.hp')}}</option>
         </select>
       </div>
       <div class="mt-4 min-h-0 max-h-[65vh] flex-1 overflow-y-auto">
