@@ -1,10 +1,10 @@
-# ⚡ ECAS Remake
+# Flixtricity : ECAS Remake
 
 A Progressive Web App (PWA) to track and analyze energy consumption (electricity, gas, water) based on manual meter readings.
 
 ---
 
-## 🎯 Purpose
+## Purpose
 
 This project is a modern reimplementation of an existing energy tracking application.
 
@@ -18,7 +18,7 @@ It allows you to:
 
 ---
 
-## 🧱 Tech Stack
+## Tech Stack
 
 * **Vue 3**
 * **Vite**
@@ -28,7 +28,7 @@ It allows you to:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ```bash
 git clone https://github.com/<your-username>/ecas-remake.git
@@ -39,32 +39,26 @@ npm run dev
 
 ---
 
-## 📱 Key Features
+## Key Features
 
-### 🔌 Meter Management
+### Meter Management
 
 * Create and manage multiple meters (e.g. peak/off-peak, gas, water)
 
-### 🧾 Readings
+### Readings
 
 * Manual input of meter values
 * Full reading history
 * Automatic consumption calculation between readings
 
-### 📊 Statistics
+### Statistics
 
 * Monthly consumption aggregation
 * Year-over-year comparison
 * Differences in absolute value and percentage
 
-### 📈 Advanced Analysis (planned)
-
-* Linear regression for smoothing
-* Estimation of missing data
-* Anomaly detection
-
 ---
 
-## 📄 License
+## License
 
 MIT License
