@@ -18,7 +18,7 @@ export async function exportData(): Promise<void> {
   const url = URL.createObjectURL(blob);
 
   const date = new Date().toISOString().slice(0, 10);
-  const filename = `ecas-export-${date}.json`;
+  const filename = `flixtricity-export-${date}.json`;
 
   const link = document.createElement('a');
   link.href = url;
