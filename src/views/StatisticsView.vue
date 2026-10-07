@@ -3,7 +3,7 @@ import { onMounted, ref, watch } from 'vue';
 import type { Meter, MonthlyStat } from '../types';
 import StatisticsTable from '../components/StatisticsTable.vue';
 import { db } from '../services/db';
-import { computeYearStats } from '../services/monthlyStats';
+import { computeStats, MIN_STATS_YEAR, MAX_STATS_YEAR } from '../services/monthlyStats';
 import { getData } from '../services/import';
 
 const stats = ref<MonthlyStat[]>([]);
@@ -11,14 +11,31 @@ const meters = ref<Meter[]>([]);
 
 const selectedMeterId = ref(1);
 
-async function loadStats() {
+const latestReadingDate = ref<string | null>(null);
 
+async function loadStats() {
   const rawReadings = await db.readings
     .where('meterId')
     .equals(selectedMeterId.value)
     .toArray();
 
-  stats.value = computeYearStats(rawReadings, 2025);
+  stats.value = computeStats(
+    rawReadings,
+    MIN_STATS_YEAR,
+    MAX_STATS_YEAR
+  );
+
+  if (rawReadings.length > 0) {
+    const latestReading = rawReadings.reduce((latest, reading) => {
+      return new Date(reading.date) > new Date(latest.date)
+        ? reading
+        : latest;
+    });
+
+    latestReadingDate.value = latestReading.date;
+  } else {
+    latestReadingDate.value = null;
+  }
 }
 
 watch(selectedMeterId, async () => {
@@ -52,8 +69,8 @@ onMounted(async () => {
           <option :value="2">{{$t('meters.hp')}}</option>
         </select>
       </div>
-      <div class="mt-4 min-h-0 max-h-[65vh] flex-1 overflow-y-auto">
-        <StatisticsTable :stats="stats" />
+      <div class="mt-4 flex-1">
+        <StatisticsTable :stats="stats" :latest-reading-date="latestReadingDate" />
       </div>
     </div>
   </div>

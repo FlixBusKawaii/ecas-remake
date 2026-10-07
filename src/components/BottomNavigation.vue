@@ -11,7 +11,7 @@ import StatsIcon from './icons/StatsIcon.vue';
       <li>
         <RouterLink
           to="/home"
-          class="flex flex-col items-center gap-1 px-2 py-3 text-xs border-r border-r-white"
+          class="flex flex-col items-center gap-1 px-2 py-3 text-sm border-r border-r-white"
         >
           <HomeIcon class="h-6 w-6 text-white" />
           <span>{{$t('nav.home')}}</span>
@@ -21,7 +21,7 @@ import StatsIcon from './icons/StatsIcon.vue';
       <li>
         <RouterLink
           to="/reads"
-          class="flex flex-col items-center gap-1 px-2 py-3 text-xs border-r border-r-white"
+          class="flex flex-col items-center gap-1 px-2 py-3 text-sm border-r border-r-white"
         >
           <ReadingsIcon class="h-6 w-6" />
           <span>{{$t('nav.readings')}}</span>
@@ -31,7 +31,7 @@ import StatsIcon from './icons/StatsIcon.vue';
       <li>
         <RouterLink
           to="/stats"
-          class="flex flex-col items-center gap-1 px-2 py-3 text-xs border-r border-r-white"
+          class="flex flex-col items-center gap-1 px-2 py-3 text-sm border-r border-r-white"
         >
           <StatsIcon class="h-6 w-6" />
           <span>Stats</span>
@@ -41,7 +41,7 @@ import StatsIcon from './icons/StatsIcon.vue';
       <li>
         <RouterLink
           to="/settings"
-          class="flex flex-col items-center gap-1 px-2 py-3 text-xs"
+          class="flex flex-col items-center gap-1 px-2 py-3 text-sm"
         >
           <SettingsIcon class="h-6 w-6" />
           <span>{{$t('nav.settings')}}</span>
