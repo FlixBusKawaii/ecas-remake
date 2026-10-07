@@ -2,6 +2,9 @@ import type { Reading } from '../types';
 import type { MonthlyStat } from '../types';
 import { round1 } from './format';
 
+export const MIN_STATS_YEAR = 2010;
+export const MAX_STATS_YEAR = 2035;
+
 export function estimateValueAt(
   readings: Reading[],
   targetDate: Date
@@ -76,6 +79,20 @@ export function computeYearStats(
       difference: round1(difference),
       percentage: round1(percentage),
     });
+  }
+
+  return stats;
+}
+
+export function computeStats(
+  readings: Reading[],
+  startYear: number,
+  endYear: number
+): MonthlyStat[] {
+  const stats: MonthlyStat[] = [];
+
+  for (let year = startYear; year <= endYear; year++) {
+    stats.push(...computeYearStats(readings, year));
   }
 
   return stats;
