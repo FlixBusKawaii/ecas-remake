@@ -57,8 +57,16 @@ onMounted(async () => {
 
 <template>
   <div class="flex h-full flex-col">
-    <div class="space-y-4">
-      <h1>{{$t('nav.statistics')}}</h1>
+    <div class="space-y-2">
+      <div class="flex flex-row items-center justify-between">
+        <h1>{{$t('nav.statistics')}}</h1>
+        <RouterLink
+          to="/period-stats"
+          class="rounded-xl bg-slate-700 px-2 py-2 text-center font-semibold text-white"
+        >
+          {{$t('wording.sum')}}
+        </RouterLink>
+      </div>
 
       <div class="space-x-2">
         <select

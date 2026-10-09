@@ -1,9 +1,11 @@
 import type { Reading } from '../types';
-import type { MonthlyStat } from '../types';
+import type { MonthlyStat, PeriodConsumption } from '../types';
 import { round1 } from './format';
 
 export const MIN_STATS_YEAR = 2010;
 export const MAX_STATS_YEAR = 2035;
+
+export const MAX_PERIOD_MONTHS = 24;
 
 export function estimateValueAt(
   readings: Reading[],
@@ -96,4 +98,55 @@ export function computeStats(
   }
 
   return stats;
+}
+
+export function computePeriodConsumption(
+  stats: MonthlyStat[],
+  startYear: number,
+  startMonth: number,
+  endYear: number,
+  endMonth: number
+): PeriodConsumption | null {
+  const startIndex = startYear * 12 + (startMonth - 1);
+  const endIndex = endYear * 12 + (endMonth - 1);
+
+  if (endIndex < startIndex) {
+    return null;
+  }
+
+  const periodStats = stats.filter((stat) => {
+    const index = stat.year * 12 + (stat.month - 1);
+
+    return index >= startIndex && index <= endIndex;
+  });
+
+  let total = 0;
+  const missingMonths: { year: number; month: number }[] = [];
+
+  for (let index = startIndex; index <= endIndex; index++) {
+    const year = Math.floor(index / 12);
+    const month = (index % 12) + 1;
+
+    const stat = periodStats.find(
+      (stat) =>
+        stat.year === year &&
+        stat.month === month
+    );
+
+    if (!stat || stat.consumption === null) {
+      missingMonths.push({
+        year,
+        month,
+      });
+
+      continue;
+    }
+
+    total += stat.consumption;
+  }
+
+  return {
+    total: round1(total),
+    missingMonths,
+  };
 }
