@@ -26,3 +26,11 @@ export interface MonthlyStat {
   difference: number | null;
   percentage: number | null;
 }
+
+export interface PeriodConsumption {
+  total: number | null;
+  missingMonths: {
+    year: number;
+    month: number;
+  }[];
+}

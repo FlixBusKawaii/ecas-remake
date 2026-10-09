@@ -3,6 +3,7 @@ import HomeView from './views/HomeView.vue';
 import ReadingsView from './views/ReadingsView.vue';
 import StatisticsView from './views/StatisticsView.vue';
 import SettingsView from './views/SettingsView.vue';
+import PeriodStatsView from './views/PeriodStatsView.vue';
 
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
     path: '/settings',
     component: SettingsView
   },
+  {
+    path: '/period-stats',
+    component: PeriodStatsView
+  }
 ];
 
 export const router = createRouter({
