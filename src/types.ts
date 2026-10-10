@@ -34,3 +34,11 @@ export interface PeriodConsumption {
     month: number;
   }[];
 }
+
+export interface RollingYearConsumption {
+  total: number | null;
+  missingMonths: {
+    year: number;
+    month: number;
+  }[];
+}

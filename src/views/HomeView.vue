@@ -33,7 +33,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="space-y-4">
+  <div class="flex flex-col space-y-4">
     <h1>{{ $t('nav.home') }}</h1>
 
     <MeterSummaryCard
@@ -42,7 +42,7 @@ onMounted(async () => {
       :summary="summary"
     />
 
-    <button @click="showModal = true" class="w-full">
+    <button @click="showModal = true" class="w-full mb-12">
       {{$t('actions.addReading')}}
     </button>
 
@@ -51,5 +51,12 @@ onMounted(async () => {
       :latest-reading-id="latestReadingId"
       @saved="handleSaved"
     />
+
+    <RouterLink
+      to="/period-stats"
+      class="rounded-xl bg-slate-700 py-2 text-center font-semibold text-white"
+    >
+      {{$t('wording.sum')}}
+    </RouterLink>
   </div>
 </template>

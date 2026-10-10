@@ -6,12 +6,16 @@ import { db } from '../services/db';
 import { computeStats, MIN_STATS_YEAR, MAX_STATS_YEAR } from '../services/monthlyStats';
 import { getData } from '../services/import';
 
+type DisplayMode = 'monthly' | 'rollingYear';
+
 const stats = ref<MonthlyStat[]>([]);
 const meters = ref<Meter[]>([]);
 
 const selectedMeterId = ref(1);
 
 const latestReadingDate = ref<string | null>(null);
+
+const displayMode = ref<DisplayMode>('monthly')
 
 async function loadStats() {
   const rawReadings = await db.readings
@@ -59,13 +63,19 @@ onMounted(async () => {
   <div class="flex h-full flex-col">
     <div class="space-y-2">
       <div class="flex flex-row items-center justify-between">
-        <h1>{{$t('nav.statistics')}}</h1>
-        <RouterLink
-          to="/period-stats"
-          class="rounded-xl bg-slate-700 px-2 py-2 text-center font-semibold text-white"
+        <h1>{{ $t('nav.statistics') }}</h1>
+
+        <button
+          type="button"
+          class="rounded-xl bg-slate-700 px-3 py-2 text-center font-semibold text-white"
+          @click="displayMode = displayMode === 'monthly' ? 'rollingYear' : 'monthly'"
         >
-          {{$t('wording.sum')}}
-        </RouterLink>
+          {{
+            displayMode === 'monthly'
+              ? $t('wording.rollingYear')
+              : $t('wording.monthly')
+          }}
+        </button>
       </div>
 
       <div class="space-x-2">
@@ -78,7 +88,11 @@ onMounted(async () => {
         </select>
       </div>
       <div class="mt-4 flex-1">
-        <StatisticsTable :stats="stats" :latest-reading-date="latestReadingDate" />
+        <StatisticsTable 
+          :stats="stats"
+          :latest-reading-date="latestReadingDate"
+          :display-mode="displayMode"
+        />
       </div>
     </div>
   </div>
