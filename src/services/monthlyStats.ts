@@ -1,5 +1,5 @@
 import type { Reading } from '../types';
-import type { MonthlyStat, PeriodConsumption } from '../types';
+import type { MonthlyStat, PeriodConsumption, RollingYearConsumption } from '../types';
 import { round1 } from './format';
 
 export const MIN_STATS_YEAR = 2010;
@@ -139,6 +139,47 @@ export function computePeriodConsumption(
         month,
       });
 
+      continue;
+    }
+
+    total += stat.consumption;
+  }
+
+  return {
+    total: round1(total),
+    missingMonths,
+  };
+}
+
+export function computeRollingYearConsumption(
+  stats: MonthlyStat[],
+  year: number,
+  month: number
+): RollingYearConsumption {
+  const endIndex = year * 12 + (month - 1);
+  const startIndex = endIndex - 11;
+
+  let total = 0;
+  const missingMonths: {
+    year: number;
+    month: number;
+  }[] = [];
+
+  for (let index = startIndex; index <= endIndex; index++) {
+    const currentYear = Math.floor(index / 12);
+    const currentMonth = (index % 12) + 1;
+
+    const stat = stats.find(
+      (item) =>
+        item.year === currentYear &&
+        item.month === currentMonth
+    );
+
+    if (!stat || stat.consumption === null) {
+      missingMonths.push({
+        year: currentYear,
+        month: currentMonth,
+      });
       continue;
     }
 
