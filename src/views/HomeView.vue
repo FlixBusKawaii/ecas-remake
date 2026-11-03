@@ -10,14 +10,12 @@ const showModal = ref(false);
 const latestReadingId = ref<number>(0);
 
 function getLatestReadingId(): number {
-  const latestHCid = summaries.value[0].latestReading?.id;
-  if(!latestHCid) return 1;
-  
-  const latestHPid = summaries.value[1].latestReading?.id;
-  if(!latestHPid) return 1;
-
-  if(latestHCid > latestHPid) return latestHCid;;
-  return latestHPid;
+  return Math.max(
+    0,
+    ...summaries.value.map(
+      (summary) => summary.latestReading?.id ?? 0
+    )
+  );
 }
 
 async function handleSaved() {

@@ -29,7 +29,8 @@
   "wording.totalConsumption": "Consommation totale",
   "wording.maximumPeriod": "Période maximale : 24 mois",
   "wording.missingData": "Données manquantes",
-  "wording.unknownData": "Le calcul ne contient pas de valeur pour :",
+  "wording.missingDataDetails": "Le calcul ne contient pas de valeur pour :",
+  "wording.singleReadingConfirmation": "Tu n'as renseigné qu'un seul relevé. Veux-tu vraiment continuer ?",
   "wording.developped": "Développé par FlixBusKawaii",
   "options.meterType": "Type de relevé",
   "options.value": "Valeur (kWh)"

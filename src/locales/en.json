@@ -27,10 +27,11 @@
   "wording.startingMonth": "Starting month",
   "wording.endingMonth": "Ending month",
   "wording.totalConsumption": "Total consumption",
-  "wording.maximumPeriod": "Maximum period : 24 month",
+  "wording.maximumPeriod": "Maximum period: 24 months",
   "wording.missingData": "Missing data",
-  "wording.unknownData": "This sum does not contain any value for :",
-  "wording.developped": "Developped by FlixBusKawaii",
+  "wording.missingDataDetails": "This sum does not contain any value for :",
+  "wording.singleReadingConfirmation": "You have only entered one reading. Do you really want to continue?",
+  "wording.developped": "Developed by FlixBusKawaii",
   "options.meterType": "Meter Type",
   "options.value": "Value (kWh)"
 }
