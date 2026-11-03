@@ -384,7 +384,7 @@ onMounted(async () => {
         </p>
 
         <p class="mt-1">
-          {{$t('wording.unknownData')}}
+          {{$t('wording.missingDataDetails')}}
         </p>
 
         <ul class="mt-1 list-inside list-disc">
